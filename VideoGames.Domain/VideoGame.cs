@@ -11,6 +11,7 @@ namespace VideoGames.Domain
         public Guid Id { get; set; }
         public string Name { get; set; } = "";
         public DateTime RelesesDate { get; set; }
+        public double Rating { get; set; }
         public ICollection<VideoGameGenre> Genre { get; set; }
     }
 }
