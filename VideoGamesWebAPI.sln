@@ -15,6 +15,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoGames.Domain", "VideoG
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoGames.Application", "VideoGames.Application\VideoGames.Application.csproj", "{45B790E2-E9A9-47C1-8CF1-6BB9A4AE559E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoGames.Persistence", "VideoGames.Persistence.cs\VideoGames.Persistence.csproj", "{9519BCD5-31B9-4250-A6E7-2BBAF46A95CD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoGames.WebAPI", "VideoGames.WebAPI\VideoGames.WebAPI.csproj", "{11995D2F-B915-4BEE-AE73-E7515AABBC40}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +33,14 @@ Global
 		{45B790E2-E9A9-47C1-8CF1-6BB9A4AE559E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{45B790E2-E9A9-47C1-8CF1-6BB9A4AE559E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{45B790E2-E9A9-47C1-8CF1-6BB9A4AE559E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9519BCD5-31B9-4250-A6E7-2BBAF46A95CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9519BCD5-31B9-4250-A6E7-2BBAF46A95CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9519BCD5-31B9-4250-A6E7-2BBAF46A95CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9519BCD5-31B9-4250-A6E7-2BBAF46A95CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11995D2F-B915-4BEE-AE73-E7515AABBC40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11995D2F-B915-4BEE-AE73-E7515AABBC40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11995D2F-B915-4BEE-AE73-E7515AABBC40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11995D2F-B915-4BEE-AE73-E7515AABBC40}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -36,6 +48,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{6BDF2667-417A-4918-A4CD-1F45F53D4CAB} = {FE2955F3-00B8-47C0-924A-4A61AE1FF72F}
 		{45B790E2-E9A9-47C1-8CF1-6BB9A4AE559E} = {FE2955F3-00B8-47C0-924A-4A61AE1FF72F}
+		{9519BCD5-31B9-4250-A6E7-2BBAF46A95CD} = {DB340153-7D9F-4FB5-9470-30B48551B8B5}
+		{11995D2F-B915-4BEE-AE73-E7515AABBC40} = {9F12B9CA-C724-4682-A721-D6CAF1CD2CAD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {38F16954-06F7-4A31-AAE7-B69F83503F3C}
