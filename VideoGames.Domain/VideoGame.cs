@@ -12,6 +12,7 @@ namespace VideoGames.Domain
         public string Name { get; set; } = "";
         public DateTime RelesesDate { get; set; }
         public double Rating { get; set; }
-        public ICollection<VideoGameGenre> Genre { get; set; }
+        public DeveloperStudio DeveloperStudio { get; set; }
+        public ICollection<VideoGameGenre> Genres { get; set; }
     }
 }

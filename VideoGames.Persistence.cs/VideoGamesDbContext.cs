@@ -6,7 +6,7 @@ using VideoGames.Persistence.EntityTypeConfigurations;
 namespace VideoGames.Persistence
 {
     public class VideoGamesDbContext
-        : DbContext, IVideoGameDbContext, IVideoGameGenreDbContext, IDeveloperStudioDbCotext
+        : DbContext, IVideoGamesDbContext
     {
         public DbSet<VideoGame> VideoGames { get; set; }
         public DbSet<VideoGameGenre> VideoGameGenres { get; set; }
