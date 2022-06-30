@@ -15,8 +15,6 @@ namespace VideoGames.Application.VideoGames.Commands.CreateVideoGame
                 .NotEmpty()
                 .NotNull();
             RuleFor(createVgCommand => createVgCommand.Rating)
-                .NotEmpty()
-                .NotNull()
                 .InclusiveBetween(0, 10);
             RuleFor(createVgCommand => createVgCommand.DeveloperStudioName)
                 .NotEmpty()
