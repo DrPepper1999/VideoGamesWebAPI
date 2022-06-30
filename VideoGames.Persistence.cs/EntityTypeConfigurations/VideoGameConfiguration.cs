@@ -13,7 +13,7 @@ namespace VideoGames.Persistence.EntityTypeConfigurations
 
             builder.Property(videoGame => videoGame.Name).IsRequired();
 
-            builder.Property(videoGame => videoGame.RelesesDate).IsRequired();
+            builder.Property(videoGame => videoGame.ReleaseDate).IsRequired();
 
             builder.Property(videoGame => videoGame.Rating).IsRequired();
         }
