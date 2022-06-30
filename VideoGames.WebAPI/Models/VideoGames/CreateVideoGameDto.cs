@@ -21,16 +21,16 @@ namespace VideoGames.WebAPI.Models.VideoGames
         public void Mapping(Profile profile)
         {
             profile.CreateMap<CreateVideoGameDto, CreateVideoGameCommand>()
-                .ForMember(videoGameDto => videoGameDto.Name,
-                opt => opt.MapFrom(videoGame => videoGame.Name))
-                .ForMember(videoGameDto => videoGameDto.ReleaseDate,
-                opt => opt.MapFrom(videoGame => videoGame.ReleaseDate))
-                .ForMember(videoGameDto => videoGameDto.Rating,
-                opt => opt.MapFrom(videoGame => videoGame.Rating))
-                .ForMember(videoGameDto => videoGameDto.DeveloperStudioName,
-                opt => opt.MapFrom(videoGame => videoGame.DeveloperStudioName))
-                .ForMember(videoGameDto => videoGameDto.GenreNames,
-                opt => opt.MapFrom(videoGame => videoGame.GenreNames));
+                .ForMember(videoGame => videoGame.Name,
+                opt => opt.MapFrom(videoGameDto => videoGameDto.Name))
+                .ForMember(videoGame => videoGame.ReleaseDate,
+                opt => opt.MapFrom(videoGameDto => videoGameDto.ReleaseDate))
+                .ForMember(videoGame => videoGame.Rating,
+                opt => opt.MapFrom(videoGameDto => videoGameDto.Rating))
+                .ForMember(videoGame => videoGame.DeveloperStudioName,
+                opt => opt.MapFrom(videoGameDto => videoGameDto.DeveloperStudioName))
+                .ForMember(videoGame => videoGame.GenreNames,
+                opt => opt.MapFrom(videoGameDto => videoGameDto.GenreNames));
         }
     }
 }

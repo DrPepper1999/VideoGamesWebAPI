@@ -18,12 +18,12 @@ namespace VideoGames.WebAPI.Models.VideoGames
         public void Mapping(Profile profile)
         {
             profile.CreateMap<GetVideoGameListDto, GetVideoGameListQuery>()
-                .ForMember(videoGameDto => videoGameDto.RatingMoreThan,
-                opt => opt.MapFrom(videoGame => videoGame.RatingMoreThan))
-                .ForMember(videoGameDto => videoGameDto.DeveloperStudioName,
-                opt => opt.MapFrom(videoGame => videoGame.DeveloperStudioName))
-                .ForMember(videoGameDto => videoGameDto.VideoGameGenreName,
-                opt => opt.MapFrom(videoGame => videoGame.VideoGameGenreName));
+                .ForMember(videoGame => videoGame.RatingMoreThan,
+                opt => opt.MapFrom(videoGameDto => videoGameDto.RatingMoreThan))
+                .ForMember(videoGame => videoGame.DeveloperStudioName,
+                opt => opt.MapFrom(videoGameDto => videoGameDto.DeveloperStudioName))
+                .ForMember(videoGame => videoGame.VideoGameGenreName,
+                opt => opt.MapFrom(videoGameDto => videoGameDto.VideoGameGenreName));
         }
     }
 }
