@@ -4,6 +4,7 @@ using VideoGames.Application;
 using VideoGames.Application.Common.Mappings;
 using VideoGames.Application.Interfaces;
 using System.Reflection;
+using VideoGames.WebAPI.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -41,6 +42,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCustomExceptionHandler();
 
 app.UseHttpsRedirection();
 
