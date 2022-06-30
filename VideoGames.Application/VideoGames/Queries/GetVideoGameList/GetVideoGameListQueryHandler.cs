@@ -24,13 +24,13 @@ namespace VideoGames.Application.VideoGames.Queries.GetVideoGameList
             {
                 query = query.Where(vg => vg.Rating > request.RatingMoreThan);
             }
-            if (request.DeveloperStudioId.HasValue)
+            if (request.DeveloperStudioName != null)
             {
-                query = query.Where(vg => vg.DeveloperStudio.Id == request.DeveloperStudioId);
+                query = query.Where(vg => vg.DeveloperStudio.Name == request.DeveloperStudioName);
             }
-            if (request.VideoGameGenreId.HasValue)
+            if (request.VideoGameGenreName != null)
             {
-                query = query.Where(vg => vg.Genres.Any(g => g.Id == request.VideoGameGenreId));
+                query = query.Where(vg => vg.Genres.Any(g => g.Name == request.VideoGameGenreName));
             }
             var videoGameQuery = await query
                 .ProjectTo<VideoGameLookupDto>(_mapper.ConfigurationProvider)

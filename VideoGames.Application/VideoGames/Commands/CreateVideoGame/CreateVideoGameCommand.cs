@@ -7,7 +7,7 @@ namespace VideoGames.Application.VideoGames.Commands.CreateVideoGame
         public string Name { get; set; }
         public DateTime ReleaseDate { get; set; }
         public double Rating { get; set; }
-        public Guid DeveloperStudioId { get; set; }
-        public IEnumerable<Guid> GenreIds { get; set; } = new List<Guid>();
+        public string DeveloperStudioName { get; set; }
+        public IEnumerable<string> GenreNames { get; set; } = new List<string>();
     }
 }

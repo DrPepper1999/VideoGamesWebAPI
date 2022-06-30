@@ -7,7 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\VideoGames.Application\VideoGames.Application.csproj" />
+    <ProjectReference Include="..\VideoGames.Persistence.cs\VideoGames.Persistence.csproj" />
   </ItemGroup>
 
 </Project>

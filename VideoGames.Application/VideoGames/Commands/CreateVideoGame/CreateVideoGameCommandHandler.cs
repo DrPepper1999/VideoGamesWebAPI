@@ -11,24 +11,29 @@ namespace VideoGames.Application.VideoGames.Commands.CreateVideoGame
         private readonly IVideoGamesDbContext _dbContext;
         public CreateVideoGameCommandHandler(IVideoGamesDbContext dbContext) =>
             _dbContext = dbContext;
-        public async Task<Guid> Handle(CreateVideoGameCommand request, CancellationToken cancellationToken)
+        public async Task<Guid> Handle(CreateVideoGameCommand request,
+            CancellationToken cancellationToken)
         {
             var developerStudio = await _dbContext.DeveloperStudios
-                .FirstOrDefaultAsync(ds => ds.Id == request.DeveloperStudioId, cancellationToken);
+                .FirstOrDefaultAsync(ds => ds.Name == request.DeveloperStudioName, cancellationToken);
 
             if (developerStudio == null)
             {
-                throw new NotFoundException(nameof(DeveloperStudio), request.DeveloperStudioId);
+                throw new NotFoundException(nameof(DeveloperStudio), request.DeveloperStudioName);
             }
 
-            var genres = await _dbContext.VideoGameGenres
-                .Where(genre => request.GenreIds.Contains(genre.Id))
-                .ToListAsync(cancellationToken);
+            var query = _dbContext.VideoGameGenres.AsQueryable();
 
-            if (!genres.Any())
+            if (!request.GenreNames.All(genre => query.Select(q => q.Name).Contains(genre)))
             {
-                throw new NotFoundException(nameof(VideoGameGenre), request.GenreIds);
+                var generError = request.GenreNames
+                    .Where(genre => !query.Select(q => q.Name).Contains(genre));
+                throw new GenreDoesNotExist(generError);
             }
+
+            var genres = await query
+                .Where(genre => request.GenreNames.Contains(genre.Name))
+                .ToListAsync(cancellationToken);
 
             var videoGame = new VideoGame
             {

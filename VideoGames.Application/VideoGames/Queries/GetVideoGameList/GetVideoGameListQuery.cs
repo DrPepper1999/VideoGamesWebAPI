@@ -4,9 +4,8 @@ namespace VideoGames.Application.VideoGames.Queries.GetVideoGameList
 {
     public class GetVideoGameListQuery : IRequest<VideoGameListVm>
     {
-        public Guid Id { get; set; }
         public double? RatingMoreThan { get; set; }
-        public Guid? DeveloperStudioId { get; set; }
-        public Guid? VideoGameGenreId { get; set; }
+        public string? DeveloperStudioName { get; set; }
+        public string? VideoGameGenreName { get; set; }
     }
 }

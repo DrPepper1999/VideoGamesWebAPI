@@ -9,8 +9,8 @@ namespace VideoGames.Application.VideoGames.Queries.GetVideoGameDetails
         public string Name { get; set; } = "";
         public DateTime RelesesDate { get; set; }
         public double Rating { get; set; }
-        public DeveloperStudio DeveloperStudio { get; set; }
-        public ICollection<VideoGameGenre> Genres { get; set; }
+        public string DeveloperStudio { get; set; }
+        public ICollection<string> Genres { get; set; }
 
         public void Mapping(Profile profile)
         {
@@ -22,9 +22,9 @@ namespace VideoGames.Application.VideoGames.Queries.GetVideoGameDetails
                 .ForMember(videoGameVm => videoGameVm.Rating,
                 opt => opt.MapFrom(videoGame => videoGame.Rating))
                 .ForMember(videoGameVm => videoGameVm.DeveloperStudio,
-                opt => opt.MapFrom(videoGame => videoGame.DeveloperStudio))
+                opt => opt.MapFrom(videoGame => videoGame.DeveloperStudio.Name))
                 .ForMember(videoGameVm => videoGameVm.Genres,
-                opt => opt.MapFrom(videoGame => videoGame.Genres));
+                opt => opt.MapFrom(videoGame => videoGame.Genres.Select(genre => genre.Name)));
         }
     }
 }
