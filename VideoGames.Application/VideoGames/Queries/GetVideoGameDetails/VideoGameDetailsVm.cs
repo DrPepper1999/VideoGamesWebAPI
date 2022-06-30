@@ -7,7 +7,7 @@ namespace VideoGames.Application.VideoGames.Queries.GetVideoGameDetails
     public class VideoGameDetailsVm : IMapWith<VideoGame>
     {
         public string Name { get; set; } = "";
-        public DateTime RelesesDate { get; set; }
+        public DateTime ReleaseDate { get; set; }
         public double Rating { get; set; }
         public string DeveloperStudio { get; set; }
         public ICollection<string> Genres { get; set; }
@@ -17,8 +17,8 @@ namespace VideoGames.Application.VideoGames.Queries.GetVideoGameDetails
             profile.CreateMap<VideoGame, VideoGameDetailsVm>()
                 .ForMember(videoGameVm => videoGameVm.Name,
                 opt => opt.MapFrom(videoGame => videoGame.Name))
-                .ForMember(videoGameVm => videoGameVm.RelesesDate,
-                opt => opt.MapFrom(videoGame => videoGame.RelesesDate))
+                .ForMember(videoGameVm => videoGameVm.ReleaseDate,
+                opt => opt.MapFrom(videoGame => videoGame.ReleaseDate))
                 .ForMember(videoGameVm => videoGameVm.Rating,
                 opt => opt.MapFrom(videoGame => videoGame.Rating))
                 .ForMember(videoGameVm => videoGameVm.DeveloperStudio,

@@ -20,7 +20,7 @@ namespace VideoGames.Application.VideoGames.Queries.GetVideoGameList
                 .ForMember(videoGameDto => videoGameDto.Name,
                 opt => opt.MapFrom(videoGame => videoGame.Name))
                 .ForMember(videoGameDto => videoGameDto.ReleaseDate,
-                opt => opt.MapFrom(videoGame => videoGame.RelesesDate))
+                opt => opt.MapFrom(videoGame => videoGame.ReleaseDate))
                 .ForMember(videoGameDto => videoGameDto.Rating,
                 opt => opt.MapFrom(videoGame => videoGame.Rating));
         }

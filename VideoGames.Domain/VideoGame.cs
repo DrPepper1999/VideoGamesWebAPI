@@ -10,7 +10,7 @@ namespace VideoGames.Domain
     {
         public Guid Id { get; set; }
         public string Name { get; set; } = "";
-        public DateTime RelesesDate { get; set; }
+        public DateTime ReleaseDate { get; set; }
         public double Rating { get; set; }
         public DeveloperStudio DeveloperStudio { get; set; }
         public ICollection<VideoGameGenre> Genres { get; set; }
