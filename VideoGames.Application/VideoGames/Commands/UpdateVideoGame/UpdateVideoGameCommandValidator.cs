@@ -11,6 +11,8 @@ namespace VideoGames.Application.VideoGames.Commands.UpdateVideoGame
             RuleFor(updateVgCommand => updateVgCommand.Id)
                 .NotEqual(Guid.Empty)
                 .NotNull();
+            RuleFor(updateVgCommand => updateVgCommand.Rating)
+                .InclusiveBetween(0, 10);
         }
     }
 }

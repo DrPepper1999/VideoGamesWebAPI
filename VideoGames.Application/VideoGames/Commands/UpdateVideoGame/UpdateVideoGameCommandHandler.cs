@@ -14,6 +14,7 @@ namespace VideoGames.Application.VideoGames.Commands.UpdateVideoGame
         public async Task<Unit> Handle(UpdateVideoGameCommand request, CancellationToken cancellationToken)
         {
             var videoGame = await _dbContext.VideoGames
+                .Include(db => db.Genres)
                 .FirstOrDefaultAsync(vg => vg.Id == request.Id, cancellationToken);
 
             if (videoGame == null)
@@ -21,40 +22,56 @@ namespace VideoGames.Application.VideoGames.Commands.UpdateVideoGame
                 throw new NotFoundException(nameof(VideoGame), request.Id);
             }
 
-            if (request.DeveloperStudioId.HasValue)
+            if (request.DeveloperStudioName != null)
             {
                 var developerStudio = await _dbContext.DeveloperStudios
-                    .FirstOrDefaultAsync(ds => ds.Id == request.DeveloperStudioId, cancellationToken);
+                    .FirstOrDefaultAsync(ds => ds.Name == request.DeveloperStudioName,
+                    cancellationToken);
 
                 if (developerStudio == null)
                 {
-                    throw new NotFoundException(nameof(DeveloperStudio), request.DeveloperStudioId);
+                    throw new NotFoundException(nameof(DeveloperStudio), request.DeveloperStudioName);
                 }
 
                 videoGame.DeveloperStudio = developerStudio;
             }
 
-            if (request.GenreIds != null)
+            if (IsNotEmpty(request.GenreNames))
             {
-                var genres = await _dbContext.VideoGameGenres
-                    .Where(genre => request.GenreIds.Contains(genre.Id))
-                    .ToListAsync(cancellationToken);
+                var query = _dbContext.VideoGameGenres.AsQueryable();
 
-                if (!genres.Any())
+                if (IsValidateGenre(request.GenreNames, query))
                 {
-                    throw new NotFoundException(nameof(VideoGameGenre), request.GenreIds);
+                    var generError = request.GenreNames
+                        .Where(genre => !query.Select(q => q.Name).Contains(genre));
+                    throw new GenreDoesNotExist(generError);
                 }
+
+                var genres = await query
+                    .Where(genre => request.GenreNames.Contains(genre.Name))
+                    .ToListAsync(cancellationToken);
 
                 videoGame.Genres = genres;
             }
 
             videoGame.Name = request.Name ?? videoGame.Name;
-            videoGame.RelesesDate = request.RelesesDate ?? videoGame.RelesesDate;
+            videoGame.ReleaseDate = request.ReleaseDate ?? videoGame.ReleaseDate;
             videoGame.Rating = request.Rating ?? videoGame.Rating;
 
             await _dbContext.SaveChangesAsync(cancellationToken);
 
             return Unit.Value;
+        }
+
+        private static bool IsValidateGenre(IEnumerable<string> genreNames,
+            IQueryable<VideoGameGenre> query)
+        {
+            return !genreNames.All(genre => query.Select(q => q.Name).Contains(genre));
+        }
+
+        private static bool IsNotEmpty(IEnumerable<string> genreNames)
+        {
+            return genreNames != null && genreNames?.Count() != 0;
         }
     }
 }

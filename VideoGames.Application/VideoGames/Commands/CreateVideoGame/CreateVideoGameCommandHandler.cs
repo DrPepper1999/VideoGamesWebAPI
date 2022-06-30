@@ -39,7 +39,7 @@ namespace VideoGames.Application.VideoGames.Commands.CreateVideoGame
             {
                 Id = Guid.NewGuid(),
                 Name = request.Name,
-                RelesesDate = request.ReleaseDate,
+                ReleaseDate = request.ReleaseDate,
                 Rating = request.Rating,
                 DeveloperStudio = developerStudio,
                 Genres = genres
