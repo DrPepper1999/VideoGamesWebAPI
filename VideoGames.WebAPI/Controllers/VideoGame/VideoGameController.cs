@@ -46,11 +46,13 @@ namespace VideoGames.WebAPI.Controllers.VideoGame
             return Ok(videoGameId);
         }
 
-        [HttpPut]
-        public async Task<IActionResult> Update([FromBody] UpdateVideoGameDto updateVideoGameDto)
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(Guid id,
+            [FromBody] UpdateVideoGameDto updateVideoGameDto)
         {
             var command = _mapper.Map<UpdateVideoGameCommand>(updateVideoGameDto);
-            var videoGameId = await Mediator.Send(command);
+            command.Id = id;
+            await Mediator.Send(command);
 
             return NoContent();
         }
