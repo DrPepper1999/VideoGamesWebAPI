@@ -1,4 +1,5 @@
-using VideoGames.Domain;
+using Serilog;
+using Serilog.Events;
 using VideoGames.Persistence;
 using VideoGames.Application;
 using VideoGames.Application.Common.Mappings;
@@ -7,6 +8,13 @@ using System.Reflection;
 using VideoGames.WebAPI.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
+
+Log.Logger = new LoggerConfiguration().MinimumLevel
+    .Override("Microsoft", LogEventLevel.Information)
+    .WriteTo.File("VideoGameWebAppLog-.txt", rollingInterval: RollingInterval.Day)
+    .CreateLogger();
+
+builder.Host.UseSerilog();
 
 // Add services to the container.
 
@@ -42,6 +50,7 @@ builder.Services.AddCors(options =>
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

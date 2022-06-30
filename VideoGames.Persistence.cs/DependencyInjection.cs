@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
+using Serilog;
 using VideoGames.Application.Interfaces;
 
 namespace VideoGames.Persistence
@@ -29,12 +30,9 @@ namespace VideoGames.Persistence
                 var dbContext = provider.GetRequiredService<VideoGamesDbContext>();
                 await DbInitializer.InitializeAsync(dbContext, cancellationToken);
             }
-            catch (Exception ex)
+            catch (Exception exception)
             {
-                /*
-                var logger = services.GetService<ILogger>();
-                logger?.LogCritical(ex, "An error occurred while initializing the application database.");
-                */
+                Log.Fatal(exception, "An error occurred while app initialization");
             }
         }
     }
